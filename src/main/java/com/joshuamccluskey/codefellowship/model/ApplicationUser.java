@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class ApplicationUser {
@@ -12,4 +13,9 @@ public class ApplicationUser {
     long id;
     String username;
     String password;
+    String firstName;
+    String lastName;
+    LocalDate dateOfBirth;
+    String bio;
+    
 }
