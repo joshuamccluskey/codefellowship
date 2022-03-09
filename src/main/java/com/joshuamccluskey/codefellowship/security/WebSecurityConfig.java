@@ -1,4 +1,4 @@
-package com.joshuamccluskey.codefellowship;
+package com.joshuamccluskey.codefellowship.security;
 
 import com.joshuamccluskey.codefellowship.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-
 
 @Configuration
 @EnableWebSecurity
@@ -38,15 +36,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/")
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
                 .and()
-                    .logout()
-                    .logoutSuccessUrl("/login");
+                .logout()
+                .logoutSuccessUrl("/login");
     }
 }
 
