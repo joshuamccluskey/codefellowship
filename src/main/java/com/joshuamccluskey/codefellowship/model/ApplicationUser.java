@@ -17,10 +17,10 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
     long id;
     public String username;
     public String password;
-//    public String firstName;
-//    public String lastName;
-//    public LocalDate dateOfBirth;
-//    public String bio;
+    public String firstName;
+    public String lastName;
+    public LocalDate dateOfBirth;
+    public String bio;
 
     public void setUsername(String username) {
         this.username = username;
@@ -46,37 +46,37 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
     }
 
 
-//    public String getFirstName() {
-//        return firstName;
-//    }
+    public String getFirstName() {
+        return firstName;
+    }
 
-//    public void setFirstName(String firstName) {
-//        ApplicationUser.firstName = firstName;
-//    }
-//
-//    public String getLastName() {
-//        return lastName;
-//    }
-//
-//    public void setLastName(String lastName) {
-//        ApplicationUser.lastName = lastName;
-//    }
-//
-//    public LocalDate getDateOfBirth() {
-//        return dateOfBirth;
-//    }
-//
-//    public void setDateOfBirth(LocalDate dateOfBirth) {
-//        ApplicationUser.dateOfBirth = dateOfBirth;
-//    }
-//
-//    public String getBio() {
-//        return bio;
-//    }
-//
-//    public void setBio(String bio) {
-//        ApplicationUser.bio = bio;
-//    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     @Override
     public boolean isAccountNonExpired() {

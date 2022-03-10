@@ -3,6 +3,7 @@ package com.joshuamccluskey.codefellowship.controller;
 import com.joshuamccluskey.codefellowship.model.ApplicationUser;
 import com.joshuamccluskey.codefellowship.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,11 +50,14 @@ public class ApplicationUserController {
     }
 
     @PostMapping("/signup")
-    public RedirectView creatingAUserAccount(String username, String password){
+    public RedirectView creatingAUserAccount(String username, String password, String firstName, String lastName, @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateofBirth, String bio){
         ApplicationUser newUser = new ApplicationUser();
         newUser.setUsername(username);
         String hashedPassword = passwordEncoder.encode(password);
         newUser.setPassword(hashedPassword);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setBio(bio);
         applicationUserRepository.save(newUser);
         authWithHttpServletRequest(username, password);
         return new RedirectView("/");
