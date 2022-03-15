@@ -29,39 +29,46 @@ public class ApplicationUserController {
 
     @GetMapping("/login")
     public String getLoginPage(){
-        return "login.html";
+        return ("login.html");
     }
 
 
     @GetMapping("/signup")
-    public String thisIsForTheCrerateAccountPage(){
-        return "signup.html";
+    public String getCreateAccountPage(){
+        return ("signup.html");
     }
 
-
+    @GetMapping("/home")
+    public String getHomePage(Model m, Principal p){
+        String username =  p.getName();
+        m.addAttribute("username", username);
+        return ("index.html");
+    }
     @GetMapping("/")
     public String thisIsForTheMainPage(Principal p, Model m){
         if (p != null){
             String username = p.getName();
-            ApplicationUser newUser = applicationUserRepository.findByUsername(username);
+            ApplicationUser newUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
             m.addAttribute("username", username);
         }
-        return "index.html";
+        return ("splash.html");
     }
 
     @PostMapping("/signup")
-    public RedirectView creatingAUserAccount(String username, String password, String firstName, String lastName, @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateofBirth, String bio){
+    public RedirectView creatingAUserAccount(String username, String password, String firstName, String lastName, @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateOfBirth, String bio){
         ApplicationUser newUser = new ApplicationUser();
         newUser.setUsername(username);
         String hashedPassword = passwordEncoder.encode(password);
         newUser.setPassword(hashedPassword);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
+        newUser.setDateOfBirth(dateOfBirth);
         newUser.setBio(bio);
         applicationUserRepository.save(newUser);
         authWithHttpServletRequest(username, password);
         return new RedirectView("/");
     }
+
 
     public void authWithHttpServletRequest(String username, String password){
         try{
