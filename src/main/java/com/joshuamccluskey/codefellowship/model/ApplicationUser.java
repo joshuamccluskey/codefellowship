@@ -6,7 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.List;
+
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails { //Generate implement methods
@@ -22,7 +23,7 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
     String pic = "defaultProfile.png";
 
 //    @OneToMany(mappedBy = "postByUser", cascade = CascadeType.ALL)
-//    List<ApplicationUser> usersPost;
+//    Set<ApplicationUser> usersPost;
 
     public ApplicationUser(){
         /* This is the default method */
