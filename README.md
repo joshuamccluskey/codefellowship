@@ -79,3 +79,13 @@ Work Time 4 hours
 - Add the ability for users to comment on posts.
 
 Work Time 3 hours
+
+### Refactor 
+
+- Made sure login worked and all features were working
+- Worktime 3 Hours
+- 
+### Refactor
+
+- Made sure login worked and all features were working
+- Worktime 3 Hours

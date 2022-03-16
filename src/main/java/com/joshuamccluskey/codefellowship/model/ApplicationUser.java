@@ -3,12 +3,10 @@ package com.joshuamccluskey.codefellowship.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails { //Generate implement methods
@@ -21,6 +19,10 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
     String lastName;
     LocalDate dateOfBirth;
     String bio;
+    String pic = "defaultProfile.png";
+
+//    @OneToMany(mappedBy = "postByUser", cascade = CascadeType.ALL)
+//    List<ApplicationUser> usersPost;
 
     public ApplicationUser(){
         /* This is the default method */
@@ -88,6 +90,22 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     @Override

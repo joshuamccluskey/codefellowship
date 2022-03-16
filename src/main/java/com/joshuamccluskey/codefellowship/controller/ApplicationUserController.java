@@ -8,11 +8,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDate;
 
@@ -55,7 +57,12 @@ public class ApplicationUserController {
     }
 
     @PostMapping("/signup")
-    public RedirectView creatingAUserAccount(String username, String password, String firstName, String lastName, @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateOfBirth, String bio){
+    public RedirectView creatingAUserAccount(String username,
+                                             String password,
+                                             String firstName,
+                                             String lastName,
+                                             @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateOfBirth,
+                                             String bio){
         ApplicationUser newUser = new ApplicationUser();
         newUser.setUsername(username);
         String hashedPassword = passwordEncoder.encode(password);
@@ -69,6 +76,28 @@ public class ApplicationUserController {
         return new RedirectView("/");
     }
 
+    @GetMapping("/myprofile")
+    public String getMyProfilePage(Principal p, Model m){
+        String username = p.getName();
+        ApplicationUser currentUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+        m.addAttribute("username", username);
+        m.addAttribute("pic", currentUser.getPic());
+        m.addAttribute("firstName", currentUser.getFirstName());
+        m.addAttribute("lastName", currentUser.getLastName());
+        m.addAttribute("dateOfBirth", currentUser.getDateOfBirth());
+        m.addAttribute("bio", currentUser.getBio());
+        return ("/myprofile");
+    }
+
+    @GetMapping("/users/{id}")
+    public String getMyProfilePage(@PathVariable long id, Model m){
+        ApplicationUser currentUser = applicationUserRepository.findById(id);
+        m.addAttribute("username", currentUser.getUsername());
+        m.addAttribute("pic", currentUser.getPic());
+        m.addAttribute("bio", currentUser.getBio());
+        return ("users.html");
+    }
+
 
     public void authWithHttpServletRequest(String username, String password){
         try{
@@ -77,5 +106,14 @@ public class ApplicationUserController {
             System.out.println("Yo an Error happened");
             se.printStackTrace();
         }
+    }
+
+    @PostMapping("/logout")
+    public RedirectView logOutUserAndGetLogin(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        return new RedirectView("/login");
     }
 }

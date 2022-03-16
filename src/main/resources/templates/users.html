@@ -7,11 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Welcome to CodeFellowship</title>
+    <title>Users</title>
 </head>
 <body>
-<h1>Welcome to Codefellowship</h1>
-<br><a href="http://localhost:8080/login"> Login </a>
-<br><a href="http://localhost:8080/signup"> Sign Up </a>
+<h1>Users</h1>
+<br>
+<img class="profile" src="/../img/defaultProfile.png" alt="Profile">
+<span th:text="${'Username: ' + username}"></span>
+<br><span th:text="${'Bio: ' + bio}"></span>
+<br><br>
 </body>
 </html>
