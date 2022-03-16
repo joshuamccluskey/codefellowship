@@ -4,6 +4,17 @@
 
 ### Contributors Joshua McCluskey
 
+### Implementation
+
+- Please adjust postgres url, username, password to access your local database on the following link [Postgres Properties](src/main/resources/application.properties)
+- Build and run app from root codefellowship/ on IDE or using the following in the command line/ terminal
+- See link and run from the file [Run App from this file in IDE](src/main/java/com/joshuamccluskey/codefellowship/CodefellowshipApplication.java)
+- Link to browser [See App in Browser](http://localhost:8080/)
+- For integration testing, run command Line/terminal  : `./gradlew test`
+- For build, input in command Line/terminal : `./gradle build`
+- To run app, input in command line/terminal: `./gradle bootRun`
+
+
 ### Overview
 Build an app that allows users to log into CodeFellowship.
 - Sit has a  login page, link to signup page, link to login and logout
@@ -87,5 +98,5 @@ Work Time 3 hours
 - 
 ### Refactor
 
-- Made sure login worked and all features were working
-- Worktime 3 Hours
+- Account Info persists;Login Success; Profile page complete; Users Page Complete: Post created: Styling;
+- Worktime 5 Hours
