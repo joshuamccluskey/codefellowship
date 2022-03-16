@@ -31,6 +31,8 @@ Files:
 
 Work Time 5 Hours
 
+### Sources:
+Stock Photo : https://stock.adobe.com/search?k=%22default+profile+picture%22&asset_id=64675209
 
 
 ## CodeFellowship Day 2 Authorization
