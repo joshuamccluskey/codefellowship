@@ -3,24 +3,39 @@ package com.joshuamccluskey.codefellowship.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails { //Generate implement methods
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-    public String username;
-    public String password;
-    public String firstName;
-    public String lastName;
-    public LocalDate dateOfBirth;
-    public String bio;
+    String username;
+    String password;
+    String firstName;
+    String lastName;
+    LocalDate dateOfBirth;
+    String bio;
+    String pic = "defaultProfile.png";
+
+//    @OneToMany(mappedBy = "postByUser", cascade = CascadeType.ALL)
+//    Set<ApplicationUser> usersPost;
+
+    public ApplicationUser(){
+        /* This is the default method */
+    }
+    public ApplicationUser(String username, String password, String firstName, String lastName, LocalDate dateOfBirth ,String bio) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.bio = bio;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -76,6 +91,22 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     @Override
