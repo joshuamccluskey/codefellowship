@@ -85,13 +85,17 @@ public class ApplicationUserController {
     @GetMapping("/myprofile")
     public String getMyProfilePage(Principal p, Model m){
         String username = p.getName();
-        ApplicationUser currentUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
-        m.addAttribute("username", username);
-        m.addAttribute("pic", currentUser.getPic());
-        m.addAttribute("firstName", currentUser.getFirstName());
-        m.addAttribute("lastName", currentUser.getLastName());
-        m.addAttribute("dateOfBirth", currentUser.getDateOfBirth());
-        m.addAttribute("bio", currentUser.getBio());
+        if(p != null) {
+            ApplicationUser currentUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+            m.addAttribute("username", username);
+            m.addAttribute("pic", currentUser.getPic());
+            m.addAttribute("firstName", currentUser.getFirstName());
+            m.addAttribute("lastName", currentUser.getLastName());
+            m.addAttribute("dateOfBirth", currentUser.getDateOfBirth());
+            m.addAttribute("bio", currentUser.getBio());
+            m.addAttribute("currentUser", currentUser);
+            m.addAttribute("posts", currentUser.getPostListByUser());
+        }
         return ("/myprofile");
     }
 
@@ -124,13 +128,13 @@ public class ApplicationUserController {
     }
 
     @PostMapping("/addpost")
-    public RedirectView addNewPost(Principal p, Model m, String body, String subject) {
+    public RedirectView addNewPost(Principal p, Model m, String title, String body) {
         if (p != null) {
             String username = p.getName();
             ApplicationUser applicationUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
             m.addAttribute("applicationUser", applicationUser);
-            Post post = new Post(body, subject);
-            post.setCreatedAt(String.valueOf(new Date()));
+            Post post = new Post(title, body);
+            post.setCreatedAt(new Date());
             post.setApplicationUser(applicationUser);
             postRepository.save(post);
         }

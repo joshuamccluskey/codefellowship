@@ -26,19 +26,19 @@
 <br><span th:text="${'Bio: ' + bio}"></span>
 <br><br>
 
-<!--<div th:each="post : ${applicationUser.postListByUser}">-->
-<!--    <h3 th:text="${post.subject}"></h3>-->
-<!--    <br><div  th:text="${post.createdAt}"></div>-->
-<!--    <br><div th:text="${post.body}"></div>-->
-<!--</div>-->
-<!--<br><br>-->
+<span th:each=" post : ${posts}">
+    <h3 th:text="${'Blog Title: ' + post.getTitle()}"></h3>
+    <span th:text="${'Blog Post: ' + post.getBody()}"></span>
+    <span th:text="${'Blog Date: ' + post.getCreatedAt()}"></span>
+</span>
+<br><br>
 
 <form action="/addpost" method="post">
     <fieldset>
         <legend>Blog Post</legend>
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" required>
-        <label for="body">Content</label>
+        <label for="title">Blog Title</label>
+        <input type="text" name="title">
+        <label for="body">Blog Content</label>
         <textarea  type="text" name="body" required></textarea>
         <input class="button" type="submit" value="Submit Post">
     </fieldset>

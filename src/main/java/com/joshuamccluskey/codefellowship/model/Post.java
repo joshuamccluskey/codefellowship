@@ -1,14 +1,16 @@
 package com.joshuamccluskey.codefellowship.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+    String title;
     String body;
-    String createdAt;
+    Date createdAt;
 
     @ManyToOne
     ApplicationUser applicationUser;
@@ -26,11 +28,11 @@ public class Post {
         this.body = body;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -43,10 +45,17 @@ public class Post {
     }
 
 
+    public String getTitle() {
+        return title;
+    }
 
-    public Post(String body, String createdAt) {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Post(String title, String body) {
+        this.title = title;
         this.body = body;
-        this.createdAt = createdAt;
     }
 
 
