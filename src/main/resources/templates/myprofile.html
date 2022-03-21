@@ -10,10 +10,13 @@
     <title>My Profile</title>
 </head>
 <body>
+<div th:if="${username}" th:insert="fragments/header-nav-footer :: header"></div>
+
+<div class="navbar" th:if="${username}" th:insert="fragments/header-nav-footer :: menu"></div>
+
 <h1>My Profile</h1>
 <br>
-<a href="/home">Home</a>
-<a href="/logout">Log Out</a>
+
 <br>
 <h2 th:text="${username + '  Profile Info'}"></h2>
 
@@ -43,5 +46,6 @@
         <input class="button" type="submit" value="Submit Post">
     </fieldset>
 </form>
+<div th:insert="fragments/header-nav-footer :: footer"></div>
 </body>
 </html>

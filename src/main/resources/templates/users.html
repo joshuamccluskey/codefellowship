@@ -10,11 +10,25 @@
     <title>Users</title>
 </head>
 <body>
+<div th:if="${username}" th:insert="fragments/header-nav-footer :: header"></div>
 <h1>Users</h1>
+
+
+<div class="navbar" th:if="${username}" th:insert="fragments/header-nav-footer :: menu"></div>
+
 <br>
 <img class="profile" src="/../img/defaultProfile.jpeg" alt="Profile">
 <span th:text="${'Username: ' + username}"></span>
 <br><span th:text="${'Bio: ' + bio}"></span>
 <br><br>
+
+<span th:each=" post : ${posts}">
+    <h3 th:text="${'Blog Title: ' + post.getTitle()}"></h3>
+    <span th:text="${'Blog Post: ' + post.getBody()}"></span>
+    <span th:text="${'Blog Date: ' + post.getCreatedAt()}"></span>
+</span>
+<br><br>
+
+<div th:insert="fragments/header-nav-footer :: footer"></div>
 </body>
 </html>

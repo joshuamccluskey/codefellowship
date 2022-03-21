@@ -49,8 +49,9 @@ public class ApplicationUserController {
     @GetMapping("/home")
     public String getHomePage(Model m, Principal p){
         String username =  p.getName();
+        ApplicationUser newUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
         m.addAttribute("username", username);
-        return ("index.html");
+        return ("home.html");
     }
     @GetMapping("/")
     public String thisIsForTheMainPage(Principal p, Model m){
@@ -102,6 +103,7 @@ public class ApplicationUserController {
     @GetMapping("/users/{id}")
     public String getMyProfilePage(@PathVariable long id, Model m){
         ApplicationUser currentUser = applicationUserRepository.findById(id);
+        m.addAttribute("posts", currentUser.getPostListByUser());
         m.addAttribute("username", currentUser.getUsername());
         m.addAttribute("pic", currentUser.getPic());
         m.addAttribute("bio", currentUser.getBio());

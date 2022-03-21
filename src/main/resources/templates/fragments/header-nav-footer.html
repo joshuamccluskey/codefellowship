@@ -9,5 +9,22 @@
 </head>
 <body>
 
+
+<header th:fragment="header" class="header-fragment">
+    <h1>CodeFellowship</h1>
+    <h1 style="padding:1vw;margin:1vw;" th:text="${'Current User: ' + username}"></h1>
+</header>
+
+<nav th:fragment="menu">
+<a th:href="@{/home}">Home</a>
+<a th:href="@{/myprofile}">My Profile</a>
+<a th:href="@{/logout}">Log Out</a>
+</nav>
+
+
+<footer th:fragment="footer">
+
+    <br><span>&copy; 2022 Josh McCluskey</span>
+</footer>
 </body>
 </html>
