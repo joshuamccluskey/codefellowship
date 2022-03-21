@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -105,6 +108,8 @@ public class ApplicationUserController {
     @GetMapping("/users/{id}")
     public String getMyProfilePage(@PathVariable long id, Model m){
         ApplicationUser currentUser = applicationUserRepository.findById(id);
+        m.addAttribute("currentUserId",currentUser.getId());
+        m.addAttribute("currentUsername",currentUser.getUsername());
         m.addAttribute("posts", currentUser.getPostListByUser());
         m.addAttribute("username", currentUser.getUsername());
         m.addAttribute("pic", currentUser.getPic());
@@ -143,5 +148,47 @@ public class ApplicationUserController {
             postRepository.save(post);
         }
         return new RedirectView("/myprofile");
+    }
+
+    @GetMapping("/siteusers")
+    public String getAllUsersPage(Principal p, Model m) {
+        String username = p.getName();
+        if (p != null) {
+        ApplicationUser applicationUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+            m.addAttribute("applicationUser", applicationUser);
+        }
+        ApplicationUser currentUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+        List<ApplicationUser> allUsers = applicationUserRepository.findAll();
+        m.addAttribute("allUsers", allUsers);
+        m.addAttribute("username", currentUser.getUsername());
+        return ("site-users.html");
+    }
+
+    @GetMapping("/feed")
+    public String getMyFeed(Principal p, Model m) {
+        if (p != null) {
+            String username = p.getName();
+            ApplicationUser currentUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+            m.addAttribute("applicationUser", currentUser);
+            List<Post> postsList = new ArrayList<>();
+            for (ApplicationUser user : currentUser.getUsersFanOf()) {
+                postsList.addAll(user.getPostListByUser());
+            }
+            m.addAttribute("allUserPosts", postsList);
+            m.addAttribute("username", currentUser.getUsername());
+        }
+        return ("feed.html");
+    }
+
+    @PostMapping("/fanFollowsUser")
+    public RedirectView followUser(Long userId, Principal p) {
+        ApplicationUser fanOfUser = applicationUserRepository.getById(userId);
+        String username = p.getName();
+        ApplicationUser currentUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+        fanOfUser.addUsersFanOfMe(currentUser);
+        currentUser.addUsersFanOf(fanOfUser);
+        applicationUserRepository.save(currentUser);
+        applicationUserRepository.save(fanOfUser);
+        return new RedirectView("/siteusers");
     }
 }

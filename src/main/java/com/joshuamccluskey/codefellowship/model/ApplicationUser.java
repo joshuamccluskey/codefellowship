@@ -28,6 +28,17 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
     @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
     List<Post> postListByUser;
 
+    @ManyToMany(mappedBy = "usersFanOfMe")
+    Set<ApplicationUser> usersFanOf;
+
+    @ManyToMany
+    @JoinTable(name = "usersName_to_fan",
+            joinColumns = {@JoinColumn(name="usersName")},
+            inverseJoinColumns = {@JoinColumn(name="fan")})
+    Set<ApplicationUser> usersFanOfMe;
+
+
+
     public ApplicationUser(){
         /* This is the default method */
     }
@@ -38,6 +49,28 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+    }
+
+    public void addUsersFanOfMe (ApplicationUser currentUser){
+        usersFanOfMe.add(currentUser);
+    }
+    public void addUsersFanOf (ApplicationUser fanOfUser){
+        usersFanOf.add(fanOfUser);
+    }
+    public Set<ApplicationUser> getUsersFanOf() {
+        return usersFanOf;
+    }
+
+    public void setUsersFanOf(Set<ApplicationUser> usersFanOf) {
+        this.usersFanOf = usersFanOf;
+    }
+
+    public Set<ApplicationUser> getUsersFanOfMe() {
+        return usersFanOfMe;
+    }
+
+    public void setUsersFanOfMe(Set<ApplicationUser> usersFanOfMe) {
+        this.usersFanOfMe = usersFanOfMe;
     }
 
     public void setUsername(String username) {

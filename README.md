@@ -63,6 +63,11 @@ Work Time 4 hours
 ### Contributors Joshua McCluskey
 
 ### Overview
+Users can follow each other and see each other feeds after following. Feed page is lists out all following 
+users pages. Users can go back and forth 
+
+
+
 - Ensure that users can’t perform SQL injection or HTML injection with their posts.
 - Allow users to follow other users. Following a user means that their posts show up in the logged-in user’s feed, where they can see what all of their followed users have posted recently.
     - Ensure there is some way (like a users index page) that a user can discover other users on the service.
@@ -81,12 +86,8 @@ Work Time 4 hours
 - Smooth error handling with appropriate responses to bad requests.
 - Integration testing on (at minimum) the splash page, login, and sign up routes.
 
-
-### Stretch Goals
-
-- When users create posts, allow them to specify whether or not a post is “public”. Public posts show up in everyone’s feeds.
-- Add the ability for users to comment on posts.
-
+[feed](src/main/resources/templates/feed.html)
+[siteUser](src/main/resources/templates/site-users.html)
 Work Time 3 hours
 
 ### Refactor 
@@ -100,5 +101,9 @@ Work Time 3 hours
 - Worktime 5 Hours
 
 ### Refactor
-- Posts and error page and fragements set
-- Worktime 3 hours
+- Posts and error page and fragements set; users page created; Error Page Created
+- Worktime 4 hours
+
+### Refactor
+- Feed and follw features created
+- Worktime 2 hours
