@@ -48,6 +48,14 @@ User logs in and can see profile information adn can create blog posts. Fragment
 - A logged-in user should be able to edit their profile. (Double stretch: allow them to change their passwords if they enter their current password.)
 - An “admin” user should be able to edit anyone’s profile.
 
+[Post](src/main/java/com/joshuamccluskey/codefellowship/model/Post.java)
+[Post Repository](src/main/java/com/joshuamccluskey/codefellowship/repository/PostRepository.java)
+[error](/Users/joshuamccluskey/projects/courses/401/codefellowship/src/main/resources/templates/error.html)
+[fragment](src/main/resources/templates/fragments/header-nav-footer.html)
+[Users Page](src/main/resources/templates/users.html)
+[myprofile](src/main/resources/templates/myprofile.html)
+[home](src/main/resources/templates/home.html)
+
 Work Time 4 hours
 
 ## CodeFellowship Day 3 Authorization
@@ -90,3 +98,7 @@ Work Time 3 hours
 
 - Account Info persists;Login Success; Profile page complete; Users Page Complete: Post created: Styling;
 - Worktime 5 Hours
+
+### Refactor
+- Posts and error page and fragements set
+- Worktime 3 hours
