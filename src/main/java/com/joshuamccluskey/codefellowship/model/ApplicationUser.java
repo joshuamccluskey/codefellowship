@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,8 +23,10 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
     String bio;
     String pic = "defaultProfile.png";
 
-//    @OneToMany(mappedBy = "postByUser", cascade = CascadeType.ALL)
-//    Set<ApplicationUser> usersPost;
+
+
+    @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
+    List<Post> postListByUser;
 
     public ApplicationUser(){
         /* This is the default method */
@@ -107,6 +110,14 @@ public class ApplicationUser implements UserDetails { //Generate implement metho
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public List<Post> getPostListByUser() {
+        return postListByUser;
+    }
+
+    public void setPostListByUser(List<Post> postListByUsers) {
+        this.postListByUser = postListByUsers;
     }
 
     @Override

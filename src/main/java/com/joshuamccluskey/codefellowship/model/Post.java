@@ -11,7 +11,12 @@ public class Post {
     String createdAt;
 
     @ManyToOne
-    ApplicationUser postByUser;
+    ApplicationUser applicationUser;
+
+    public Post(){
+
+    }
+
 
     public String getBody() {
         return body;
@@ -29,24 +34,20 @@ public class Post {
         this.createdAt = createdAt;
     }
 
-    public ApplicationUser getPostByUser() {
-        return postByUser;
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
     }
 
-    public void setPostByUser(ApplicationUser postByUser) {
-        this.postByUser = postByUser;
+    public void setApplicationUser(ApplicationUser postByUser) {
+        this.applicationUser = postByUser;
     }
 
-    public Post(){
 
-    }
 
     public Post(String body, String createdAt) {
         this.body = body;
         this.createdAt = createdAt;
     }
-
-
 
 
 }

@@ -26,5 +26,22 @@
 <br><span th:text="${'Bio: ' + bio}"></span>
 <br><br>
 
+<!--<div th:each="post : ${applicationUser.postListByUser}">-->
+<!--    <h3 th:text="${post.subject}"></h3>-->
+<!--    <br><div  th:text="${post.createdAt}"></div>-->
+<!--    <br><div th:text="${post.body}"></div>-->
+<!--</div>-->
+<!--<br><br>-->
+
+<form action="/addpost" method="post">
+    <fieldset>
+        <legend>Blog Post</legend>
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" required>
+        <label for="body">Content</label>
+        <textarea  type="text" name="body" required></textarea>
+        <input class="button" type="submit" value="Submit Post">
+    </fieldset>
+</form>
 </body>
 </html>

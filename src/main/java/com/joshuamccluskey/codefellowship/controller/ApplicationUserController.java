@@ -1,7 +1,9 @@
 package com.joshuamccluskey.codefellowship.controller;
 
 import com.joshuamccluskey.codefellowship.model.ApplicationUser;
+import com.joshuamccluskey.codefellowship.model.Post;
 import com.joshuamccluskey.codefellowship.repository.ApplicationUserRepository;
+import com.joshuamccluskey.codefellowship.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,11 +19,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Controller
 public class ApplicationUserController {
     @Autowired
     ApplicationUserRepository applicationUserRepository;
+
+    @Autowired
+    PostRepository postRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -115,5 +121,19 @@ public class ApplicationUserController {
         session.invalidate();
 
         return new RedirectView("/login");
+    }
+
+    @PostMapping("/addpost")
+    public RedirectView addNewPost(Principal p, Model m, String body, String subject) {
+        if (p != null) {
+            String username = p.getName();
+            ApplicationUser applicationUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+            m.addAttribute("applicationUser", applicationUser);
+            Post post = new Post(body, subject);
+            post.setCreatedAt(String.valueOf(new Date()));
+            post.setApplicationUser(applicationUser);
+            postRepository.save(post);
+        }
+        return new RedirectView("/myprofile");
     }
 }
