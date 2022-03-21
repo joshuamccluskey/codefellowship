@@ -88,6 +88,8 @@ public class ApplicationUserController {
         String username = p.getName();
         if(p != null) {
             ApplicationUser currentUser = (ApplicationUser) applicationUserRepository.findByUsername(username);
+            ApplicationUser currentUserId = (ApplicationUser) applicationUserRepository.findByUsername(username);
+            m.addAttribute("id", currentUserId);
             m.addAttribute("username", username);
             m.addAttribute("pic", currentUser.getPic());
             m.addAttribute("firstName", currentUser.getFirstName());
