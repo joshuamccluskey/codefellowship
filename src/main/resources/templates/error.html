@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Error</title>
+</head>
+<body>
+
+<div th:if="${username}" th:insert="fragments/header-nav-footer :: header"></div>
+
+<div class="navbar" th:if="${username}" th:insert="fragments/header-nav-footer:: menu"></div>
+<h1> Get Some Air and Stomp It, We'll figure this out!</h1>
+<h2 th:text="${'Status code is: ' + status + ',  Error code description is: ' + error + ', Error message is: ' + message}"></h2>
+<img src="/../img/error.jpg" alt="Code Fellowship Home">
+
+Photo by <a href="https://unsplash.com/@fegiii?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Felipe Giacometti</a> on <a href="https://unsplash.com/s/photos/snowboarding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+<div th:insert="fragments/header-nav-footer :: footer"></div>
+</body>
+</html>
