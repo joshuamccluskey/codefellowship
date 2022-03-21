@@ -40,21 +40,9 @@ Stock Photo : https://stock.adobe.com/search?k=%22default+profile+picture%22&ass
 ### Contributors Joshua McCluskey
 
 ### Overview
-- Build an app that allows users to log into CodeFellowship.
 
-- Upon logging in, users should be taken to a /myprofile route that displays their information.
-- This should include a default profile picture, which is the same for every user, and their basic information from ApplicationUser.
-- The site should have a page which allows viewing the data about a single ApplicationUser, at a route like /users/{id}.
-- This should include a default profile picture, which is the same for every user, and their basic information.
-- Continue to ensure that your homepage, login, and registration routes are accessible to non-logged in users. All other routes should be limited to logged-in users.
-- Add a Post entity to your app.
-- A Post has a body and a createdAt timestamp.
-- A logged-in user should be able to create a Post, and a post should belong to the user that created it.
-- Hint: This is a relationship between two pieces of data
-- A user’s posts should be visible on their profile page.
-- The site should use reusable templates for its information. (At a minimum, it should have one Thymeleaf fragment that is used on multiple pages.)
-- The site should have a non-whitelabel error handling page that lets the user know, at minimum, the error code and a brief message about what went wrong.
 
+User logs in and can see profile information adn can create blog posts. Fragments were set for nav bar and an error page was set for a more custom experience.
 ### Stretch Goals
 
 - A logged-in user should be able to edit their profile. (Double stretch: allow them to change their passwords if they enter their current password.)
