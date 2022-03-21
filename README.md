@@ -13,6 +13,7 @@
 - For integration testing, run command Line/terminal  : `./gradlew test`
 - For build, input in command Line/terminal : `./gradle build`
 - To run app, input in command line/terminal: `./gradle bootRun`
+- Link to browser [See App in Browser](http://localhost:8080/)
 
 
 ### Overview
